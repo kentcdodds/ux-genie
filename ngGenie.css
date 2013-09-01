@@ -1,0 +1,24 @@
+.genie-container {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  z-index: 1050;
+  width: 600px;
+  margin-left: -300px;
+  font-size: 65px;
+}
+
+.genie-container > input {
+  width: 544px;
+  line-height: 100px;
+  padding: 0px 25px 0px 25px;
+  font-size: 65px;
+}
+
+.genie-options {
+  background-color: white;
+  width: 544px;
+  margin-top: -2px;
+  font-size: 64px;
+  padding: 0px 25px 0px 25px;
+}

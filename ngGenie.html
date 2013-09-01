@@ -1,0 +1,6 @@
+<div class="genie-container">
+  <input autofocus type="text" ng-model="genieInput" />
+  <div class="genie-options">
+    <div class="genie-option" ng-class="{focused: focusedWish }" ng-mouseenter="focusOnWish(wish)" ng-repeat="wish in matchingWishes">{{wish.data.displayText}}</div>
+  </div>
+</div>
