@@ -3,22 +3,26 @@
   top: 10%;
   left: 50%;
   z-index: 1050;
-  width: 600px;
-  margin-left: -300px;
-  font-size: 65px;
+  width: 400px;
+  margin-left: -200px;
+  background-color: white;
+  padding: 20px;
 }
 
 .genie-container > input {
-  width: 544px;
-  line-height: 100px;
+  width: 344px;
+  line-height: 60px;
   padding: 0px 25px 0px 25px;
-  font-size: 65px;
+  font-size: 40px;
 }
 
 .genie-options {
-  background-color: white;
-  width: 544px;
+  width: 344px;
   margin-top: -2px;
-  font-size: 64px;
+  font-size: 35px;
   padding: 0px 25px 0px 25px;
+}
+
+.genie-option.focused {
+  background-color: red;
 }

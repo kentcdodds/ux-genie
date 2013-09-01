@@ -56,50 +56,48 @@
     <script src="./lib/genie.js"></script>
     <script src="ngGenie.js"></script>
     <script>
-      genie({
-        magicWords: ['Hey you!', 'alert'],
-        action: function() {
-          alert('Hello!');
-        },
-        data: {
-          displayText: 'Hey you!'
+
+      function addWish(wishDisplay, magicWords, action) {
+        if (typeof magicWords === 'function') {
+          action = magicWords;
+          magicWords = undefined;
         }
+        if (magicWords === undefined) {
+          magicWords = [];
+        }
+        if (magicWords.indexOf('[') == 0) {
+          magicWords = JSON.parse(magicWords);
+        }
+        magicWords.push(wishDisplay);
+        var wish = genie({
+          magicWords: magicWords,
+          data: {
+            displayText: wishDisplay
+          },
+          action: action || function() {
+            console.log('Your "' + this.data.displayText + '" wish is my command!');
+          }
+        });
+      }
+
+      addWish('ng-GenieJS on GitHub', function() {
+        window.open('http://www.github.com/kentcdodds/ng-genie', '_blank');
       });
-      genie({
-        magicWords: 'Hello World',
-        action: function() {
-          alert('Hello!');
-        },
-        data: {
-          displayText: 'Hello World'
-        }
+      addWish('GenieJS Demo', function() {
+        window.open('http://kentcdodds.github.io/genie', '_blank');
       });
-      genie({
-        magicWords: 'Hello World',
-        action: function() {
-          alert('Hello!');
-        },
-        data: {
-          displayText: 'Hello World'
-        }
+      addWish('GenieJS Tests', function() {
+        window.open('http://kentcdodds.github.io/genie/test', '_blank');
       });
-      genie({
-        magicWords: 'Hello World',
-        action: function() {
-          alert('Hello!');
-        },
-        data: {
-          displayText: 'Hello World'
-        }
-      });
-      genie({
-        magicWords: 'Hello World',
-        action: function() {
-          alert('Hello!');
-        },
-        data: {
-          displayText: 'Hello World'
-        }
+      addWish('Create new post');
+      addWish('Edit profile pic');
+      addWish('Update contact info');
+      addWish('Delete account');
+      addWish('Block user');
+      addWish('Friend user');
+      addWish('Find friends');
+      addWish('Wow!', ['Alert', 'Pop up'], function() {
+        alert('Wow!');
       });
     </script>
   </body>

@@ -7,9 +7,10 @@
 'use strict';
 (function() {
   var app = angular.module('ngGenie', []);
-  
+  // Makes this modular if we don't just use the global instance and use it as a module instead  
   app.constant('genie', genie);
   
+  // This is the part you care about...
   app.directive('ngGenie', function(genie) {
     return {
       restrict: 'EA',
@@ -25,33 +26,67 @@
         }
         
         scope.focusOnWish = function(wishElement) {
-          $scope.focusedWish = wishElement;
+          scope.focusedWish = wishElement;
         };
         
-        el.find('input').bind('keyup', (function(container) {
-          var genieOptionsContainer = container.find('.genie-options')[0];
-          var changeSelection = function(change) {
-            var index = genieOptionsContainer.selectedIndex;
-            var newIndex = parseInt(index === 'NaN' ? '-1' : index) + change;
-            if (newIndex < 0) {
-              newIndex = 0;
+        el.find('input').bind('keydown', (function() {
+          var changeSelection = function(change, event) {
+            if (scope.matchingWishes && change) {
+              if (event) {
+                event.preventDefault();
+              }
+              var index = scope.matchingWishes.indexOf(scope.focusedWish);
+              var newIndex = index + change;
+              if (newIndex < 0) {
+                newIndex = newIndex + scope.matchingWishes.length;
+              } else if (newIndex >= scope.matchingWishes.length) {
+                newIndex = newIndex - scope.matchingWishes.length;
+              }
+              scope.$apply(function() {
+                scope.focusOnWish(scope.matchingWishes[newIndex]);
+              });
             }
-            genieOptionsContainer.selectedIndex = '' + newIndex;
           }
-          return function(event) {
+          return function keydownHandler(event) {
+            var change = 0;
             switch(event.keyCode) {
               case 38:
-                changeSelection(-1);
+                change = -1;
                 break;
               case 40:
-                changeSelection(1);
+                change = 1;
                 break;
             }
+            if (event.shiftKey) {
+              change *= 5;
+            }
+            changeSelection(change, event);
           }
-        })(el));
+        })());
+        
+        el.bind('keyup', function(event) {
+          if (event.keyCode === 13 && scope.focusedWish) {
+            genie.makeWish(scope.focusedWish, scope.genieInput);
+            scope.$apply(function() {
+              updateMatchingWishes(scope.genieInput);
+            });
+          }
+        });
+        
+        function updateMatchingWishes(magicWord) {
+          if (magicWord) {
+            scope.matchingWishes = genie.getMatchingWishes(magicWord);
+            if (scope.matchingWishes.length > 0) {
+              scope.focusedWish = scope.matchingWishes[0];
+            }
+          } else {
+            scope.matchingWishes = null;
+            scope.focusedWish = null;
+          }
+        }
         
         scope.$watch('genieInput', function(newVal) {
-          scope.matchingWishes = genie.getMatchingWishes(newVal);
+          updateMatchingWishes(newVal);
         });
       }
     }
