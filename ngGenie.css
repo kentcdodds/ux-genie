@@ -1,3 +1,7 @@
+body {
+  margin: 50px;
+}
+
 .genie-container {
   position: fixed;
   top: 10%;
@@ -14,17 +18,19 @@
   line-height: 60px;
   padding: 0px 25px 0px 25px;
   font-size: 40px;
+  height: 60px;
 }
 
 .genie-options {
   width: 397px;
   margin-top: -2px;
-  font-size: 35px;
+  font-size: 30px;
   cursor: pointer;
 }
 
 .genie-option {
   padding: 0px 25px 0px 25px;
+  line-height: 50px;
 }
 
 .genie-option.focused {

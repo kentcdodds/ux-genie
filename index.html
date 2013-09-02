@@ -1,87 +1,20 @@
 <!doctype html>
-<html ng-app="ngGenie">
+<html ng-app="ngGenieApp" ng-controller="NgGenieCtrl" ng-keyup="onKeyup($event)">
   <head>
     <title>ng-GenieJS</title>
+    <link rel="stylesheet" href="./vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="ngGenie.css" />
   </head>
   <body>
     <h1>ng-GenieJS</h1>
-    <div id="ng-genie-container" style="display:none;">
-      <ng-genie></ng-genie>
-    </div>
+    <div ng-genie ng-genie-visible="genieVisible"></div>
     <div>
       <p>This is a demo for a directive for <a href="http://kentcdodds.github.io/genie">GenieJS</a>.</p>
       <p>Press Ctrl+Space to <a href="http://www.youtube.com/watch?v=pwsTXpDJSVE">rub the lamp</a>.</p>
     </div>
-    <script src="vendor/angular.min.js"></script>
-    <script src="vendor/genie.js"></script>
+    <script src="./vendor/angular.min.js"></script>
+    <script src="./vendor/genie.js"></script>
+    <script src="./app.js"></script>
     <script src="./lib/ngGenie.js"></script>
-    <script>
-      (function() {
-        function addEvent(object, event, method) {
-          if (object.addEventListener)
-            object.addEventListener(event, method, false);
-          else if(object.attachEvent)
-            object.attachEvent('on' + event, function(){ method(window.event) });
-        }
-  
-        var ngGenieContainer = document.getElementById('ng-genie-container');
-        addEvent(document, 'keyup', function(event) {
-          switch(event.keyCode) {
-            case 32: 
-              if (event.ctrlKey) {
-                var display = ngGenieContainer.style.display;
-                
-                ngGenieContainer.style.display = (display === 'none' ? 'block' : 'none');
-              }
-              break;
-          }
-        });
-        
-        function addWish(wishDisplay, magicWords, action) {
-          if (typeof magicWords === 'function') {
-            action = magicWords;
-            magicWords = undefined;
-          }
-          if (magicWords === undefined) {
-            magicWords = [];
-          }
-          if (magicWords.indexOf('[') == 0) {
-            magicWords = JSON.parse(magicWords);
-          }
-          magicWords.push(wishDisplay);
-          var wish = genie({
-            magicWords: magicWords,
-            data: {
-              displayText: wishDisplay
-            },
-            action: action || function() {
-              console.log('Your "' + this.data.displayText + '" wish is my command!');
-            }
-          });
-        }
-  
-        addWish('ng-GenieJS on GitHub', function() {
-          window.open('http://www.github.com/kentcdodds/ng-genie', '_blank');
-        });
-        addWish('GenieJS Demo', function() {
-          window.open('http://kentcdodds.github.io/genie', '_blank');
-        });
-        addWish('GenieJS Tests', function() {
-          window.open('http://kentcdodds.github.io/genie/test', '_blank');
-        });
-        addWish('Create new post');
-        addWish('Edit profile pic');
-        addWish('Update contact info');
-        addWish('Delete account');
-        addWish('Block user');
-        addWish('Friend user');
-        addWish('Find friends');
-        addWish('Wow!', ['Alert', 'Pop up'], function() {
-          alert('Wow!');
-        });
-        
-      })();
-    </script>
   </body>
 </html>
