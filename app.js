@@ -8,7 +8,7 @@
   
   app.controller('NgGenieCtrl', function($scope, genie) {
 
-    $scope.genieVisible = true;
+    $scope.genieVisible = false;
     
     $scope.onKeyup = function(event) {
       console.log('keyup' + event.keyCode);

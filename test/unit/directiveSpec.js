@@ -2,18 +2,11 @@
 
 /* jasmine specs for directives go here */
 
-describe('directive', function() {
+describe('ngGenie', function() {
   beforeEach(module('ngGenie.directive'));
 
-  describe('ng-directive', function() {
-    it('should do something awesome', function() {
-      module(function($provide) {
-        $provide.value('version', 'TEST_VER');
-      });
-      inject(function($compile, $rootScope) {
-        var element = $compile('<span app-version></span>')($rootScope);
-        expect(element.text()).toEqual('TEST_VER');
-      });
+  describe('ng-genie', function() {
+    it('should test itself... I\'ll figure this stuff out later...', function() {      
     });
   });
 });
