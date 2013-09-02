@@ -5,7 +5,9 @@
         class="genie-option" 
         ng-repeat="wish in matchingWishes"
         ng-class="{focused: focusedWish == wish}"
-        ng-mouseenter="focusOnWish(wish)">
+        ng-mouseenter="focusOnWish(wish)"
+        ng-click="makeWish(wish)"
+        >
       {{wish.data.displayText}}
     </div>
   </div>

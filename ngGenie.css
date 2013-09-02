@@ -5,7 +5,7 @@
   z-index: 1050;
   width: 400px;
   margin-left: -200px;
-  background-color: white;
+  background-color: #c6c6c6;
   padding: 20px;
 }
 
@@ -17,9 +17,13 @@
 }
 
 .genie-options {
-  width: 344px;
+  width: 397px;
   margin-top: -2px;
   font-size: 35px;
+  cursor: pointer;
+}
+
+.genie-option {
   padding: 0px 25px 0px 25px;
 }
 
