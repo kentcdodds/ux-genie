@@ -1,7 +1,7 @@
 
 'use strict';
 (function() {
-  var app = angular.module('ngGenieApp', []);
+  var app = angular.module('ngGenieApp', ['ngGenie']);
   
   // Makes this modular if we don't just use the global instance and use it as a module instead  
   app.constant('genie', genie);
@@ -11,7 +11,6 @@
     $scope.genieVisible = false;
     
     $scope.onKeyup = function(event) {
-      console.log('keyup' + event.keyCode);
       switch(event.keyCode) {
         case 32:
           if (event.ctrlKey) {
