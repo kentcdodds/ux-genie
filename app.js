@@ -8,20 +8,6 @@
   
   app.controller('NgGenieCtrl', function($scope, genie) {
 
-    $scope.genieVisible = false;
-    
-    $scope.onKeyup = function(event) {
-      switch(event.keyCode) {
-        case 32:
-          if (event.ctrlKey) {
-            $scope.genieVisible = !$scope.genieVisible;
-          }
-          break;
-        case 27:
-          $scope.genieVisible = false;
-      }
-    }
-
     function addWish(wishDisplay, magicWords, action) {
       if (typeof magicWords === 'function') {
         action = magicWords;
