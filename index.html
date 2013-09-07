@@ -1,20 +1,22 @@
 <!doctype html>
-<html ng-app="ngGenieApp" ng-controller="NgGenieCtrl" ng-keyup="onKeyup($event)">
+<html>
   <head>
     <title>ng-GenieJS</title>
-    <link rel="stylesheet" href="./vendor/bootstrap.min.css" />
-    <link rel="stylesheet" href="ngGenie.css" />
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <h1>ng-GenieJS</h1>
-    <div ng-genie ng-genie-visible="genieVisible"></div>
-    <div>
-      <p>This is a demo for a directive for <a href="http://kentcdodds.github.io/genie">GenieJS</a>.</p>
-      <p>Press Ctrl+Space to <a href="http://www.youtube.com/watch?v=pwsTXpDJSVE">rub the lamp</a>.</p>
-    </div>
-    <script src="./vendor/angular.min.js"></script>
-    <script src="./vendor/genie.js"></script>
-    <script src="./lib/ngGenie.js"></script>
-    <script src="./app.js"></script>
+    <h2>You are being redirected</h2>
+    <p>The Angular Directive for GenieJS is available for demo with the GenieJS project <a href="http://kentcdodds.github.io/genie">here</a>.</p>
+    <p>You will be automatically redirected in a few seconds...</p>
+    <script type="text/javascript">
+      setTimeout(function() {
+        window.location = "http://kentcdodds.github.io/genie"
+      }, 6000)
+    </script>
   </body>
 </html>
