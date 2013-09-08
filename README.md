@@ -52,6 +52,27 @@ The attributes of interest:
  - `rub-modifier` - A modifier key to be pressed to rub the lamp (ie `ctrlKey`, `metaKey`, `shiftKey`, `altKey`). Defaults to `ctrlKey`.
  - `rub-event-type` - The type of event to bind the lamp rubbing shortcut to.
 
+Other Stuff
+--
+
+### View All Wishes
+If the first character typed in the lamp input field is <kbd>'</kbd> (apostrophe), then it is stripped from the input when genie is queried for matching magic words. This is primarily to enable a user to see all the available wishes.
+
+### CSS
+If all you do is follow the instructions above you'll be disappointed to see that the lamp looks nothing like the demo. This is because I've opened it up to you to do custom CSS. You can borrow from the css I've made in the demo, or you can be creative and use the classes available to you: 
+
+```css
+.genie-container {/* */}
+
+.genie-container > input {/* */}
+
+.genie-wishes {/* */}
+
+.genie-wish {/* */}
+
+.genie-wish.focused {/* */}
+```
+
 Contributing
 --
 I'd love to accept [pull requests](https://github.com/kentcdodds/ng-genie/pulls).
@@ -67,6 +88,7 @@ The Future...
 *And* I plan on adding the following features in the future
 
  - Make tests... :)
+ - Allow custom template for wishes
  - Make a jQuery plugin version of this...? I'd love to see someone else make this if you like :)
 
 License
