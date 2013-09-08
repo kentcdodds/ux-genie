@@ -6,11 +6,11 @@
  * See README.md
  */
 
-angular.module('ngGenie', []).directive('ngGenie', function(genie, $timeout, $document) {
+angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $document) {
   return {
     restrict: 'EA',
     replace: true,
-    template: ['<div class="genie-container" ng-show="ngGenieVisible">',
+    template: ['<div class="genie-container">',
       '<input type="text" ng-model="genieInput" />',
       '<div class="genie-options">',
         '<div class="genie-option" ' +
@@ -21,11 +21,12 @@ angular.module('ngGenie', []).directive('ngGenie', function(genie, $timeout, $do
         '{{wish.data.displayText}}',
       '</div></div></div>'].join(''),
     scope: {
-      ngGenieVisible: '='
+      visibleClass: '@'
     },
     link: function(scope, el, attr) {
       var inputEl = angular.element(el.children()[0]);
       var genieOptionContainer = angular.element(el.children()[1]);
+      scope.ngGenieVisible = false;
 
       // Wish focus
       scope.focusOnWish = function(wishElement, autoScroll) {
@@ -132,6 +133,9 @@ angular.module('ngGenie', []).directive('ngGenie', function(genie, $timeout, $do
       // Updating list of wishes
       function updateMatchingWishes(magicWord) {
         if (magicWord) {
+          if (magicWord.indexOf('\'') === 0) {
+            magicWord = magicWord.substring(1);
+          }
           scope.matchingWishes = genie.getMatchingWishes(magicWord);
           if (scope.matchingWishes.length > 0) {
             scope.focusedWish = scope.matchingWishes[0];
@@ -146,10 +150,14 @@ angular.module('ngGenie', []).directive('ngGenie', function(genie, $timeout, $do
       
       scope.$watch('ngGenieVisible', function(newVal) {
         if (newVal) {
+          el.addClass(scope.visibleClass);
           // Needs to be visible before it can be selected
           $timeout(function() {
             inputEl[0].select();
           }, 25);
+        } else {
+          el.removeClass(scope.visibleClass);
+          inputEl[0].blur();
         }
       });
       
