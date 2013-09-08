@@ -22,7 +22,7 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
             'ng-class="{focused: focusedWish == wish}" ' +
             'ng-click="makeWish(wish)" ' +
             'ng-mouseenter="focusOnWish(wish, false)">',
-          '{{wish.data.displayText}}',
+          '{{wish.data.displayText || wish.magicWords[0]}}',
         '</div></div></div>'].join('');
     },
     scope: {
@@ -52,7 +52,7 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           scrollToWish(scope.matchingWishes.indexOf(wishElement));
         }
       };
-      
+
       function scrollToWish(index) {
         var containerHeight = genieOptionContainer[0].offsetHeight || genieOptionContainer[0].clientHeight;
         var focusedWishElement = genieOptionContainer.children()[index];
@@ -80,7 +80,7 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           });
         }
       });
-      
+
       $document.bind(scope.rubEventType || 'keydown', function(event) {
         if (event.keyCode === rubShortcut) {
           event.preventDefault();
@@ -93,7 +93,7 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           }
         }
       });
-      
+
       $document.bind('keydown', function(event) {
         if (event.keyCode === 27 && scope.ngGenieVisible) {
           event.preventDefault();
@@ -136,14 +136,14 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           changeSelection(change, event);
         }
       })());
-      
+
       // Making a wish
       scope.makeWish = function(wish) {
         genie.makeWish(wish, scope.genieInput);
         updateMatchingWishes(scope.genieInput);
         scope.ngGenieVisible = false;
       }
-      
+
       el.bind('keyup', function(event) {
         if (event.keyCode === 13 && scope.focusedWish) {
           genie.makeWish(scope.focusedWish, scope.genieInput);
@@ -153,7 +153,7 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           });
         }
       });
-      
+
       // Updating list of wishes
       function updateMatchingWishes(magicWord) {
         if (magicWord) {
@@ -171,7 +171,7 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           scope.focusedWish = null;
         }
       }
-      
+
       scope.$watch('ngGenieVisible', function(newVal) {
         if (newVal) {
           el.addClass(scope.rubClass);
@@ -184,11 +184,11 @@ angular.module('ngGenie', []).directive('ngLamp', function(genie, $timeout, $doc
           inputEl[0].blur();
         }
       });
-      
+
       scope.$watch('genieInput', function(newVal) {
         updateMatchingWishes(newVal);
       });
-      
+
     }
   }
 });
