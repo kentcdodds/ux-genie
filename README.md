@@ -10,6 +10,7 @@ Vernacular
 See the original genie [vernacular documentation](https://github.com/kentcdodds/genie#vernacular). Words specific to this directive:
 
  - Lamp: The home of Genie. In Arabian folklore, the genie is imprisoned in a lamp until summoned by rubbiux the lamp to perform wishes. In a GenieJS context, this is the interface between GenieJS and the user.
+ - UX: The `ux-` prefix stands for "User eXperience." This was used in an effort to follow the [Best Practices](https://github.com/angular/angular.js/wiki/Best-Practices) proposed by the AngularJS Team.
 
 Setup
 --
@@ -59,7 +60,7 @@ Other Stuff
 If the first character typed in the lamp input field is <kbd>'</kbd> (apostrophe), then it is stripped from the input when genie is queried for matching magic words. This is primarily to enable a user to see all the available wishes.
 
 ### CSS
-If all you do is follow the instructions above you'll be disappointed to see that the lamp looks nothing like the demo. This is because I've opened it up to you to do custom CSS. You can borrow from the css I've made in the demo, or you can be creative and use the classes available to you: 
+If all you do is follow the instructions above you'll be disappointed to see that the lamp looks nothing like the demo. This is because I've opened it up to you to do custom CSS. You can borrow from the css I've made in the demo, or you can be creative and use the classes available to you:
 
 ```css
 .genie-container {/* */}
