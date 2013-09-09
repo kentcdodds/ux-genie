@@ -1,31 +1,31 @@
-ng-genie
+ux-genie
 ========
 
 Directive for [GenieJS](http://www.github.com/kentcdodds/genie)
 
-[Demo](http://kentcdodds.github.com/ng-genie)
+[Demo](http://kentcdodds.github.com/ux-genie)
 
 Vernacular
 --
 See the original genie [vernacular documentation](https://github.com/kentcdodds/genie#vernacular). Words specific to this directive:
 
- - Lamp: The home of Genie. In Arabian folklore, the genie is imprisoned in a lamp until summoned by rubbing the lamp to perform wishes. In a GenieJS context, this is the interface between GenieJS and the user.
+ - Lamp: The home of Genie. In Arabian folklore, the genie is imprisoned in a lamp until summoned by rubbiux the lamp to perform wishes. In a GenieJS context, this is the interface between GenieJS and the user.
 
 Setup
 --
-The directive is called `ngLamp` in a module called `ngGenie`. It is restricted to attributes ([Angular default](http://docs.angularjs.org/guide/directive)). Here is an example of it's use:
+The directive is called `uxLamp` in a module called `uxGenie`. It is restricted to attributes ([Angular default](http://docs.angularjs.org/guide/directive)). Here is an example of it's use:
 
 ### Load Script
 
 ```html
-<script src="./vendor/genie.js"></script> <!-- ngGenie depends on the global genie variable -->
-<script src="./vendor/ngGenie.js"></script>
+<script src="./vendor/genie.js"></script> <!-- uxGenie depends on the global genie variable -->
+<script src="./vendor/uxGenie.js"></script>
 ```
 
 ### Add Dependency
 
 ```javascript
-angular.module('yourApp', ['ngGenie']);
+angular.module('yourApp', ['uxGenie']);
 ```
 
 ### Use Directive
@@ -33,7 +33,7 @@ angular.module('yourApp', ['ngGenie']);
 **Short Version**
 
 ```html
-<div ng-lamp></div>
+<div ux-lamp></div>
 ```
 
 This will provide you will the default lamp functionality. The lamp is rubbed with <kbd>Ctrl</kbd> + <kbd>Space</kbd> and it will simply appear/disappear.
@@ -41,12 +41,12 @@ This will provide you will the default lamp functionality. The lamp is rubbed wi
 **Long Version**
 
 ```html
-<div ng-lamp visible-class="visible" rub-shortcut="32" rub-modifier="ctrlKey" rub-event-type="keypress"></div>
+<div ux-lamp visible-class="visible" rub-shortcut="32" rub-modifier="ctrlKey" rub-event-type="keypress"></div>
 ```
 
 The attributes of interest:
 
- - `ng-lamp` - The directive itself.
+ - `ux-lamp` - The directive itself.
  - `visible-class` - The class to give the lamp when it should be visible. Useful for CSS transitions. If excluded, the lamp will simply appear/disappear when rubbed.
  - `rub-shortcut` - The character code or character to bind as a shortcut to rub the lamp. Defaults to 32 (<kbd>space</kbd> keyCode).
  - `rub-modifier` - A modifier key to be pressed to rub the lamp (ie `ctrlKey`, `metaKey`, `shiftKey`, `altKey`). Defaults to `ctrlKey`.
@@ -75,11 +75,11 @@ If all you do is follow the instructions above you'll be disappointed to see tha
 
 Contributing
 --
-I'd love to accept [pull requests](https://github.com/kentcdodds/ng-genie/pulls).
+I'd love to accept [pull requests](https://github.com/kentcdodds/ux-genie/pulls).
 
 Issues
 --
-If you have a problem with GenieJS please don't hesitate to use GitHub's [issue tracker](https://github.com/kentcdodds/ng-genie/issues)
+If you have a problem with GenieJS please don't hesitate to use GitHub's [issue tracker](https://github.com/kentcdodds/ux-genie/issues)
 to report it. I'll do my best to get it resolved as quickly as I can.
 
 The Future...
