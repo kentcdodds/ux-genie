@@ -42,7 +42,14 @@ This will provide you will the default lamp functionality. The lamp is rubbed wi
 **Long Version**
 
 ```html
-<div ux-lamp visible-class="visible" rub-shortcut="32" rub-modifier="ctrlKey" rub-event-type="keypress"></div>
+<div 
+  ux-lamp
+  visible-class="visible"
+  rub-shortcut="32"
+  rub-modifier="ctrlKey"
+  rub-event-type="keypress"
+  wish-callback="wishMade()">
+</div>
 ```
 
 The attributes of interest:
@@ -51,7 +58,8 @@ The attributes of interest:
  - `visible-class` - The class to give the lamp when it should be visible. Useful for CSS transitions. If excluded, the lamp will simply appear/disappear when rubbed.
  - `rub-shortcut` - The character code or character to bind as a shortcut to rub the lamp. Defaults to 32 (<kbd>space</kbd> keyCode).
  - `rub-modifier` - A modifier key to be pressed to rub the lamp (ie `ctrlKey`, `metaKey`, `shiftKey`, `altKey`). Defaults to `ctrlKey`.
- - `rub-event-type` - The type of event to bind the lamp rubbing shortcut to.
+ - `rub-event-type` - The type of event to bind the lamp rubbing shortcut to (like `keypress`, `keyup`, or `keydown`).
+ - `wish-callback` - A function to call when a wish is made (i.e. the user clicks or presses <kbd>enter</kbd> on a wish). The wish which was made is passed to this as an argument.
 
 Other Stuff
 --
