@@ -48,7 +48,8 @@ This will provide you will the default lamp functionality. The lamp is rubbed wi
   rub-shortcut="32"
   rub-modifier="ctrlKey"
   rub-event-type="keypress"
-  wish-callback="wishMade()">
+  wish-callback="wishMade()"
+  local-storage="true">
 </div>
 ```
 
@@ -60,6 +61,7 @@ The attributes of interest:
  - `rub-modifier` - A modifier key to be pressed to rub the lamp (ie `ctrlKey`, `metaKey`, `shiftKey`, `altKey`). Defaults to `ctrlKey`.
  - `rub-event-type` - The type of event to bind the lamp rubbing shortcut to (like `keypress`, `keyup`, or `keydown`).
  - `wish-callback` - A function to call when a wish is made (i.e. the user clicks or presses <kbd>enter</kbd> on a wish). The wish which was made is passed to this as an argument.
+ - `local-storage` - Defaults to false, but if it is set to true (or a truthy variable) then the user's preferences will be saved to their local storage and reloaded whenever they refresh the browser.
 
 Other Stuff
 --
