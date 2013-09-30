@@ -3,7 +3,7 @@ ux-genie
 
 Directive for [GenieJS](http://www.github.com/kentcdodds/genie)
 
-[Demo](http://kentcdodds.github.com/ux-genie)
+[Demo](http://kentcdodds.github.com/genie)
 
 Vernacular
 --
