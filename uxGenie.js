@@ -6,7 +6,7 @@
  * See README.md
  */
 
-angular.module('uxGenie', []).directive('uxLamp', function(genie, $timeout, $document) {
+angular.module('uxGenie', []).directive('uxLamp', ["genie", "$timeout", "$document", function(genie, $timeout, $document) {
   return {
     replace: true,
     template: function(el, attr) {
@@ -39,7 +39,7 @@ angular.module('uxGenie', []).directive('uxLamp', function(genie, $timeout, $doc
       var rubShortcut = scope.rubShortcut || '32';
       var rubModifier = scope.rubModifier || 'ctrlKey';
       var saveToLocalStorage = function() {};
-      
+
       rubShortcut = parseInt(rubShortcut, 10);
       if (isNaN(rubShortcut)) {
         rubShortcut = rubShortcut[0].charCodeAt(0);
@@ -93,7 +93,7 @@ angular.module('uxGenie', []).directive('uxLamp', function(genie, $timeout, $doc
             return;
           }
         }
-        
+
         scope.$apply(function() {
           scope.uxGenieVisible = false;
         });
@@ -213,17 +213,17 @@ angular.module('uxGenie', []).directive('uxLamp', function(genie, $timeout, $doc
           enteredMagicWords: JSON.parse(localStorage.getItem('genie'))
         };
         genie.options(options);
-    
-        // Setup update machine's preferences 
+
+        // Setup update machine's preferences
         saveToLocalStorage = function(wish) {
           // This way 'genie' is never set in local storage until a wish is made.
           localStorage.setItem('genie', JSON.stringify(genie.options().enteredMagicWords, null, 2));
         }
       }
-      
+
       scope.$watch('genieInput', function(newVal) {
         updateMatchingWishes(newVal);
       });
     }
   }
-});
+}]);
