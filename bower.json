@@ -1,12 +1,16 @@
 {
   "name": "ux-genie",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/kentcdodds/ux-genie",
   "authors": [
     "Kent C. Dodds <kent+github@doddsfamily.us>"
   ],
   "description": "AngularJS modules for GenieJS",
   "main": "uxGenie.js",
+  "dependencies": {
+      "angular": "~1.0.7",
+      "genie": "*"
+  },
   "license": "MIT",
   "private": false,
   "ignore": [
@@ -16,6 +20,9 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "LICENSE",
+    "README.md",
+    "index.html"
   ]
 }

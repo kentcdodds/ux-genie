@@ -87,6 +87,9 @@ If all you do is follow the instructions above you'll be disappointed to see tha
 Contributing
 --
 I'd love to accept [pull requests](https://github.com/kentcdodds/ux-genie/pulls).
+When you clone the repo, make sure to run `bower install` to get the dependencies.
+Also, please uglify `uxGenie.js` to `uxGenie.min.js` using [UglifyJS2](https://github.com/mishoo/UglifyJS2)
+and this command: `uglifyjs uxGenie.js -o uxGenie.min.js --comments` thanks!
 
 Issues
 --
