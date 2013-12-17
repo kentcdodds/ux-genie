@@ -5,7 +5,14 @@
  * http://www.github.com/kentcdodds/ux-genie
  * See README.md
  */
-(function() {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['./genie'], factory);
+  } else {
+    root.genieUx = factory(genie);
+  }
+}(this, function(genie) {
+
   var uxGenie = angular.module('uxGenie', []);
 
   uxGenie.constant('genie', genie);
@@ -231,4 +238,4 @@
       }
     }
   }]);
-})();
+}));
