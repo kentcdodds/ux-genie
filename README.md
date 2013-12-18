@@ -48,7 +48,7 @@ This will provide you will the default lamp functionality. The lamp is rubbed wi
   rub-shortcut="32"
   rub-modifier="ctrlKey"
   rub-event-type="keypress"
-  wish-callback="wishMade()"
+  wish-callback="wishMade(wish)"
   local-storage="true">
 </div>
 ```
