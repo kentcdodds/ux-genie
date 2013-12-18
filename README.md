@@ -56,7 +56,7 @@ This will provide you will the default lamp functionality. The lamp is rubbed wi
 The attributes of interest:
 
  - `ux-lamp` - The directive itself.
- - `visible-class` - The class to give the lamp when it should be visible. Useful for CSS transitions. If excluded, the lamp will simply appear/disappear when rubbed.
+ - `rub-class` - The class to give the lamp when it should be visible. Useful for CSS transitions. If excluded, the lamp will simply appear/disappear when rubbed.
  - `rub-shortcut` - The character code or character to bind as a shortcut to rub the lamp. Defaults to 32 (<kbd>space</kbd> keyCode).
  - `rub-modifier` - A modifier key to be pressed to rub the lamp (ie `ctrlKey`, `metaKey`, `shiftKey`, `altKey`). Defaults to `ctrlKey`.
  - `rub-event-type` - The type of event to bind the lamp rubbing shortcut to (like `keypress`, `keyup`, or `keydown`).
