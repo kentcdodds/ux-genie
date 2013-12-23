@@ -175,7 +175,6 @@
           scope.wishCallback(genie.makeWish(wish, scope.genieInput));
           saveToLocalStorage(wish);
           scope.$apply(function() {
-            updateMatchingWishes(scope.genieInput);
             scope.lampVisible = false;
           });
         }
@@ -207,6 +206,7 @@
         if (scope.rubClass) {
           scope.$watch('lampVisible', function(newVal) {
             if (newVal) {
+              updateMatchingWishes(scope.genieInput);
               el.addClass(scope.rubClass);
               // Needs to be lampVisible before it can be selected
               $timeout(function() {
