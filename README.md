@@ -44,7 +44,7 @@ This will provide you will the default lamp functionality. The lamp is rubbed wi
 ```html
 <div 
   ux-lamp
-  visible-class="visible"
+  rub-class="visible"
   rub-shortcut="32"
   rub-modifier="ctrlKey"
   rub-event-type="keypress"
