@@ -75,9 +75,48 @@ An `img` tag will be created and added prior to each wish which has a `data.imgI
 
 An `i` tag will be created and added prior to each wish which has a `data.iIcon` property (this will be assigned to the `i` tag's `class` property).
 
-## Data
+#### genie-wish
 
-the uxGenie module has directives which utilize the `data` property of a wish. See the directive definition for specific properties.
+**Short Version**
+<a href="/home" genie-wish="Go Home">Home</a>
+
+**Long Version**
+<a href="/home"
+   genie-wish="Go Home"
+   wish-id="go-home-wish-id"
+   wish-context="comma separated,wish contexts"
+   wish-data="scopeVariable"
+   wish-event="click"
+   wish-action="scopeFunction(wish)"
+   event-modifiers="ctrlKey,altKey,shiftKey,metaKey">Home</a>
+
+The attributes of interest:
+
+ - `genie-wish` - The directive itself. This can be a comma separated list for multiple magic words.
+ - `wish-id` - The id of the wish
+ - `wish-context` - A comma separated list of contexts
+ - `wish-data` - A scope object for any wish data. This is doubly bound. More info about data below.
+ - `wish-event` - The dom event to trigger on the element.
+ - `wish-action` - A scope function to be executed after the event is triggered. More info about this below.
+ - `event-modifiers` - a comma separated list of modifiers to add to the event triggered on the element.
+
+If for some reason you would rather not have the `genie-wish` attribute be the magic words, you can leave
+that attribute empty and the `genie-wish` directive will look for a name or id (in that order) and assign
+the magicWords to that value (split by commas). If none of these have values, you will get an error.
+
+##### Events and Actions
+
+If no wish-action or wish-event is present, a 'click' event will be triggered. If a wish-event is present then
+that event will be triggered on the element. If both a wish-event and wish-action are present, the wish-action
+will be called after the wish-event is triggered.
+
+##### Data
+
+This directive uses the following wish data items:
+
+ - `element` - This is assigned by the directive. It is the element to perform the action on.
+ - `event` - This is assigned by the given `wish-event` or the given `wish-data`'s data.event property.
+     If neither of those are present, it defaults to 'click'.
 
 ## Other Stuff
 

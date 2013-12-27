@@ -241,4 +241,62 @@
       }
     }
   }]);
+
+  uxGenie.directive('genieWish', ['genie', function(genie) {
+    return {
+      scope: {
+        wishData: '=?',
+        wishAction: '&?'
+      },
+      link: function(scope, el, attrs) {
+        var id = attrs.wishId;
+        var context = attrs.wishContext ? attrs.wishContext.split(',') : null;
+        var data = scope.wishData || {};
+        
+        data.element = el[0];
+        data.event = attrs.wishEvent || data.event || 'click';
+        
+        var action = function(wish) {
+          var modifiers = [];
+          if (attrs.eventModifiers) {
+            modifiers = attrs.eventModifiers.split(',');
+          }
+          var event = new MouseEvent(wish.data.event, {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            ctrlKey: modifiers.indexOf('ctrlKey') > -1,
+            altKey: modifiers.indexOf('altKey') > -1,
+            shiftKey: modifiers.indexOf('shiftKey') > -1,
+            metaKey: modifiers.indexOf('metaKey') > -1
+          });
+          wish.data.element.dispatchEvent(event);
+          
+          if (attrs.wishAction) {
+            scope.wishAction({wish: wish});
+          }
+        };
+        
+        // get magic words
+        var magicWords = null;
+        ['genieWish', 'name', 'id'].every(function(attrName) {
+          magicWords = attrs[attrName];
+          return !magicWords;
+        });
+        if (magicWords) {
+          magicWords = magicWords.split(',');
+        } else {
+          throw new Error('Thrown by the genie-wish directive: All genie-wish elements must have a magic-words, id, or name attribute.');
+        }
+        
+        genie({
+          id: id,
+          magicWords: magicWords,
+          context: context,
+          action: action,
+          data: data
+        });
+      }
+    }
+  }]);
 }));
