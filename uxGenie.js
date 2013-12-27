@@ -29,13 +29,13 @@
           '<input type="text" ng-model="genieInput" class="lamp-input input form-control" />',
           '<div ng-show="matchingWishes.length > 0" class="genie-wishes">',
             '<div class="genie-wish" ' +
-              'ng-repeat="wish in matchingWishes" ' +
-              'ng-class="{focused: focusedWish == wish}" ' +
-              'ng-click="makeWish(wish)" ' +
-              'ng-mouseenter="focusOnWish(wish, false)">',
-            '<img ng-if="wish.data.imgIcon" ng-src="{{wish.data.imgIcon}}">',
-            '<i ng-if="wish.data.iIcon" class="{{wish.data.iIcon}}"></i>',
-            '{{wish.data.displayText || wish.magicWords[0]}}',
+                  'ng-repeat="wish in matchingWishes" ' +
+                  'ng-class="{focused: focusedWish == wish}" ' +
+                  'ng-click="makeWish(wish)" ' +
+                  'ng-mouseenter="focusOnWish(wish, false)">',
+              '<img ng-if="wish.data.uxGenie.imgIcon" ng-src="{{wish.data.uxGenie.imgIcon}}">',
+              '<i ng-if="wish.data.uxGenie.iIcon" class="{{wish.data.uxGenie.iIcon}}"></i>',
+              '{{wish.data.uxGenie.displayText || wish.magicWords[0]}}',
           '</div></div></div>'].join('');
       },
       scope: {
@@ -252,16 +252,17 @@
         var id = attrs.wishId;
         var context = attrs.wishContext ? attrs.wishContext.split(',') : null;
         var data = scope.wishData || {};
+        var uxGenieData = data.uxGenie = data.uxGenie || {};
         
-        data.element = el[0];
-        data.event = attrs.wishEvent || data.event || 'click';
+        uxGenieData.element = el[0];
+        uxGenieData.event = attrs.wishEvent || uxGenieData.event || 'click';
         
         var action = function(wish) {
           var modifiers = [];
           if (attrs.eventModifiers) {
             modifiers = attrs.eventModifiers.split(',');
           }
-          var event = new MouseEvent(wish.data.event, {
+          var event = new MouseEvent(wish.data.uxGenie.event, {
             view: window,
             bubbles: true,
             cancelable: true,
@@ -270,7 +271,7 @@
             shiftKey: modifiers.indexOf('shiftKey') > -1,
             metaKey: modifiers.indexOf('metaKey') > -1
           });
-          wish.data.element.dispatchEvent(event);
+          wish.data.uxGenie.element.dispatchEvent(event);
           
           if (attrs.wishAction) {
             scope.wishAction({wish: wish});

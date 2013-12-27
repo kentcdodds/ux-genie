@@ -66,14 +66,14 @@ The attributes of interest:
  - `wish-callback` - A function to call when a wish is made (i.e. the user clicks or presses <kbd>enter</kbd> on a wish). The wish which was made is passed to this as an argument.
  - `local-storage` - Defaults to false, but if it is set to true (or a truthy variable) then the user's preferences will be saved to their local storage and reloaded whenever they refresh the browser.
 
-##### Data
+##### data.uxGenie
 
-The text displayed for each wish is either what is contained in the `displayText` property of the wish's `data` property.
+The text displayed for each wish is either what is contained in the `displayText` property of the wish's `data.uxGenie` property.
 If this is null, then it uses the first item in the `magicWords` array of the wish.
 
-An `img` tag will be created and added prior to each wish which has a `data.imgIcon` property (this will be assigned to the `img` tag's `src` property).
+An `img` tag will be created and added prior to each wish which has a `data.uxGenie.imgIcon` property (this will be assigned to the `img` tag's `src` property).
 
-An `i` tag will be created and added prior to each wish which has a `data.iIcon` property (this will be assigned to the `i` tag's `class` property).
+An `i` tag will be created and added prior to each wish which has a `data.uxGenie.iIcon` property (this will be assigned to the `i` tag's `class` property).
 
 #### genie-wish
 
@@ -95,7 +95,7 @@ The attributes of interest:
  - `genie-wish` - The directive itself. This can be a comma separated list for multiple magic words.
  - `wish-id` - The id of the wish
  - `wish-context` - A comma separated list of contexts
- - `wish-data` - A scope object for any wish data. This is doubly bound. More info about data below.
+ - `wish-data` - A scope object to be assigned to the wish's data object. This is doubly bound.
  - `wish-event` - The dom event to trigger on the element.
  - `wish-action` - A scope function to be executed after the event is triggered. More info about this below.
  - `event-modifiers` - a comma separated list of modifiers to add to the event triggered on the element.
@@ -110,12 +110,12 @@ If no wish-action or wish-event is present, a 'click' event will be triggered. I
 that event will be triggered on the element. If both a wish-event and wish-action are present, the wish-action
 will be called after the wish-event is triggered.
 
-##### Data
+##### data.uxGenie
 
-This directive uses the following wish data items:
+This directive uses the following wish `data.uxGenie` items:
 
  - `element` - This is assigned by the directive. It is the element to perform the action on.
- - `event` - This is assigned by the given `wish-event` or the given `wish-data`'s data.event property.
+ - `event` - This is assigned by the given `wish-event` or the given `wish-data`'s `data.uxGenie.event` property.
      If neither of those are present, it defaults to 'click'.
 
 ## Other Stuff

@@ -1,11 +1,11 @@
 {
   "name": "ux-genie",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "homepage": "https://github.com/kentcdodds/ux-genie",
   "authors": [
     "Kent C. Dodds <kent@doddsfamily.us>"
   ],
-  "description": "AngularJS modules for GenieJS",
+  "description": "AngularJS module for GenieJS",
   "main": "uxGenie.js",
   "dependencies": {
       "angular": "~1.2.5",
