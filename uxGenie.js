@@ -33,6 +33,8 @@
               'ng-class="{focused: focusedWish == wish}" ' +
               'ng-click="makeWish(wish)" ' +
               'ng-mouseenter="focusOnWish(wish, false)">',
+            '<img ng-if="wish.data.imgIcon" ng-src="{{wish.data.imgIcon}}">',
+            '<i ng-if="wish.data.iIcon" class="{{wish.data.iIcon}}"></i>',
             '{{wish.data.displayText || wish.magicWords[0]}}',
           '</div></div></div>'].join('');
       },

@@ -71,6 +71,10 @@ The attributes of interest:
 The text displayed for each wish is either what is contained in the `displayText` property of the wish's `data` property.
 If this is null, then it uses the first item in the `magicWords` array of the wish.
 
+An `img` tag will be created and added prior to each wish which has a `data.imgIcon` property (this will be assigned to the `img` tag's `src` property).
+
+An `i` tag will be created and added prior to each wish which has a `data.iIcon` property (this will be assigned to the `i` tag's `class` property).
+
 ## Data
 
 the uxGenie module has directives which utilize the `data` property of a wish. See the directive definition for specific properties.
@@ -91,6 +95,10 @@ If all you do is follow the instructions above you'll be disappointed to see tha
 .genie-wishes {/* */}
 
 .genie-wish {/* */}
+
+.genie-wish > img {/* */}
+
+.genie-wish > i {/* */}
 
 .genie-wish.focused {/* */}
 ```
