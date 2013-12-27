@@ -88,7 +88,9 @@ An `i` tag will be created and added prior to each wish which has a `data.uxGeni
    wish-data="scopeVariable"
    wish-event="click"
    wish-action="scopeFunction(wish)"
-   event-modifiers="ctrlKey,altKey,shiftKey,metaKey">Home</a>
+   event-modifiers="ctrlKey,altKey,shiftKey,metaKey"
+   wish-i-icon="glyphicon glyphicon-envelope"
+   wish-img-icon="/home-logo.png">Home</a>
 
 The attributes of interest:
 
@@ -99,6 +101,8 @@ The attributes of interest:
  - `wish-event` - The dom event to trigger on the element.
  - `wish-action` - A scope function to be executed after the event is triggered. More info about this below.
  - `event-modifiers` - a comma separated list of modifiers to add to the event triggered on the element.
+ - `wish-i-icon` - Used to set `data.uxGenie.iIcon` (see the `ux-lamp` directive for what this is used for).
+ - `wish-img-icon` - Used to set `data.uxGenie.imgIcon` (see the `ux-lamp` directive for what this is used for).
 
 If for some reason you would rather not have the `genie-wish` attribute be the magic words, you can leave
 that attribute empty and the `genie-wish` directive will look for a name or id (in that order) and assign

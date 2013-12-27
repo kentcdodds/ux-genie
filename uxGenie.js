@@ -256,6 +256,8 @@
         
         uxGenieData.element = el[0];
         uxGenieData.event = attrs.wishEvent || uxGenieData.event || 'click';
+        uxGenieData.iIcon = attrs.wishIIcon;
+        uxGenieData.imgIcon = attrs.wishImgIcon;
         
         var action = function(wish) {
           var modifiers = [];
