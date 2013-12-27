@@ -1,19 +1,18 @@
-ux-genie
-========
+# uxGenie
 
 Directive for [GenieJS](http://www.github.com/kentcdodds/genie)
 
 [Demo](http://kentcdodds.github.com/genie)
 
-Vernacular
---
+## Vernacular
+
 See the original genie [vernacular documentation](https://github.com/kentcdodds/genie#vernacular). Words specific to this directive:
 
  - Lamp: The home of Genie. In Arabian folklore, the genie is imprisoned in a lamp until summoned by rubbiux the lamp to perform wishes. In a GenieJS context, this is the interface between GenieJS and the user.
  - UX: The `ux-` prefix stands for "User eXperience." This was used in an effort to follow the [Best Practices](https://github.com/angular/angular.js/wiki/Best-Practices) proposed by the AngularJS Team.
 
-Setup
---
+## Setup
+
 The directive is called `uxLamp` in a module called `uxGenie`. It is restricted to attributes ([Angular default](http://docs.angularjs.org/guide/directive)). Here is an example of it's use:
 
 ### Load Script
@@ -29,7 +28,9 @@ The directive is called `uxLamp` in a module called `uxGenie`. It is restricted 
 angular.module('yourApp', ['uxGenie']);
 ```
 
-### Use Directive
+### Directives
+
+#### ux-lamp
 
 **Short Version**
 
@@ -65,8 +66,16 @@ The attributes of interest:
  - `wish-callback` - A function to call when a wish is made (i.e. the user clicks or presses <kbd>enter</kbd> on a wish). The wish which was made is passed to this as an argument.
  - `local-storage` - Defaults to false, but if it is set to true (or a truthy variable) then the user's preferences will be saved to their local storage and reloaded whenever they refresh the browser.
 
-Other Stuff
---
+##### Data
+
+The text displayed for each wish is either what is contained in the `displayText` property of the wish's `data` property.
+If this is null, then it uses the first item in the `magicWords` array of the wish.
+
+## Data
+
+the uxGenie module has directives which utilize the `data` property of a wish. See the directive definition for specific properties.
+
+## Other Stuff
 
 ### View All Wishes
 If the first character typed in the lamp input field is <kbd>'</kbd> (apostrophe), then it is stripped from the input when genie is queried for matching magic words. This is primarily to enable a user to see all the available wishes.
@@ -86,20 +95,20 @@ If all you do is follow the instructions above you'll be disappointed to see tha
 .genie-wish.focused {/* */}
 ```
 
-Contributing
---
+## Contributing
+
 I'd love to accept [pull requests](https://github.com/kentcdodds/ux-genie/pulls).
 When you clone the repo, make sure to run `bower install` to get the dependencies.
 Also, please uglify `uxGenie.js` to `uxGenie.min.js` using [UglifyJS2](https://github.com/mishoo/UglifyJS2)
 and this command: `uglifyjs uxGenie.js -o uxGenie.min.js --comments` thanks!
 
-Issues
---
+## Issues
+
 If you have a problem with GenieJS please don't hesitate to use GitHub's [issue tracker](https://github.com/kentcdodds/ux-genie/issues)
 to report it. I'll do my best to get it resolved as quickly as I can.
 
-The Future...
---
+## The Future...
+
 ... [is as bright as your faith](https://www.lds.org/general-conference/2009/04/be-of-good-cheer?lang=eng).
 *And* I plan on adding the following features in the future
 
@@ -107,8 +116,8 @@ The Future...
  - Allow custom template for wishes
  - Make a jQuery plugin version of this...? I'd love to see someone else make this if you like :)
 
-License
---
+## License
+
 The MIT License (MIT)
 
 Copyright (c) 2013 Kent C. Dodds
