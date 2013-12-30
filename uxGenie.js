@@ -286,18 +286,25 @@
           magicWords = attrs[attrName];
           return !magicWords;
         });
+        magicWords = magicWords || el.text();
         if (magicWords) {
           magicWords = magicWords.split(',');
         } else {
           throw new Error('Thrown by the genie-wish directive: All genie-wish elements must have a magic-words, id, or name attribute.');
         }
         
-        genie({
-          id: id,
-          magicWords: magicWords,
-          context: context,
-          action: action,
-          data: data
+        var wishRegistered = false;
+        attrs.$observe('ignoreWish', function(newVal) {
+          if (newVal !== 'true' && !wishRegistered) {
+            genie({
+              id: id,
+              magicWords: magicWords,
+              context: context,
+              action: action,
+              data: data
+            });
+            wishRegistered = true;
+          }
         });
       }
     }
