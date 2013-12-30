@@ -33,19 +33,19 @@
                   'ng-class="{focused: focusedWish == wish}" ' +
                   'ng-click="makeWish(wish)" ' +
                   'ng-mouseenter="focusOnWish(wish, false)">',
-              '<img ng-if="wish.data.uxGenie.imgIcon" ng-src="{{wish.data.uxGenie.imgIcon}}">',
-              '<i ng-if="wish.data.uxGenie.iIcon" class="{{wish.data.uxGenie.iIcon}}"></i>',
-              '{{wish.data.uxGenie.displayText || wish.magicWords[0]}}',
+                '<img ng-if="wish.data.uxGenie.imgIcon" ng-src="{{wish.data.uxGenie.imgIcon}}">',
+                '<i ng-if="wish.data.uxGenie.iIcon" class="{{wish.data.uxGenie.iIcon}}"></i>',
+                '{{wish.data.uxGenie.displayText || wish.magicWords[0]}}',
           '</div></div></div>'].join('');
       },
       scope: {
-        lampVisible: '=',
+        lampVisible: '=?',
         rubClass: '@',
         rubShortcut: '@',
         rubModifier: '@',
         rubEventType: '@',
-        wishCallback: '&',
-        localStorage: '='
+        wishCallback: '&?',
+        localStorage: '=?'
       },
       link: function(scope, el, attr) {
         var inputEl = angular.element(el.children()[0]);

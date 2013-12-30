@@ -1,3 +1,8 @@
+#0.2.3
+
+ - `ux-lamp` bug fix. Not including the `lamp-visible`, `wish-callback`,
+ or `local-storage` caused angular to crash with [this error](http://docs.angularjs.org/error/$compile:nonassign?p0=undefined&p1=uxLamp)
+
 #0.2.2
 
  - `genie-wish` directive will now look at the content of the element
