@@ -75,6 +75,8 @@ An `img` tag will be created and added prior to each wish which has a `data.uxGe
 
 An `i` tag will be created and added prior to each wish which has a `data.uxGenie.iIcon` property (this will be assigned to the `i` tag's `class` property).
 
+See below for information about "Sub Context." The `ux-lamp` directive relies of the `data.uxGenie.subContext` property for this.
+
 #### genie-wish
 
 **Short Version**
@@ -124,8 +126,30 @@ This directive uses the following wish `data.uxGenie` items:
 
 ## Other Stuff
 
+### Sub Context
+
+Alfred has a feature called "Quick Search" allowing a user to switch context while they're typing. The `ux-lamp`
+directive has this ability. By providing a wish with the property `data.uxGenie.subContext` the lamp will temporarily
+change context to the value of that property when a wish is made and prevent the lamp from disappearing or when
+the user types exactly what the display text for that wish is (or the first magicWord is). One use case for this
+is if you want a user to search through a collection of similar items, for example animals, you could have a wish
+with the sub context of "search-animals" and register a bunch of wishes with "search-animals" as the context.
+When the user selected the "Search Animals" wish, they would then be able to type animal names and those wishes would
+at that point be in context and show up.
+
+**Note:** The way this works is the context is completely replaced with whatever is provided as the `subContext` property
+which is desireable. It is reverted when 1. The lamp disappears or 2. The user input no longer starts with the sub context's
+wish display text.
+
 ### View All Wishes
 If the first character typed in the lamp input field is <kbd>'</kbd> (apostrophe), then it is stripped from the input when genie is queried for matching magic words. This is primarily to enable a user to see all the available wishes.
+
+### Calculator
+
+You can type simple math expressions into genie and they will be evaluated. This does use `eval`, but it goes through a
+little scrubbing so it should be safe. It's very simple, but you should be able to use any `Math` functions (that's
+sort of how it works) for example, instead of `2^3` you would type `pow(2,3)`. I know that's not optimal. If someone
+wants to contribute a better method without adding a ton of weight to this directive that would be cool :)
 
 ### CSS
 If all you do is follow the instructions above you'll be disappointed to see that the lamp looks nothing like the demo. This is because I've opened it up to you to do custom CSS. You can borrow from the css I've made in the demo, or you can be creative and use the classes available to you:

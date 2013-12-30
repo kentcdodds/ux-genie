@@ -1,3 +1,10 @@
+#0.2.4
+
+ - `genie-wish` - made it so you can escape commas for magic words like so: "People\, places\, and things".
+ - `ux-lamp` - added subContext capabilities (see README).
+ - `ux-lamp` - added simple calculator.
+ - `ux-lamp` - fixed a couple of bugs...
+
 #0.2.3
 
  - `ux-lamp` bug fix. Not including the `lamp-visible`, `wish-callback`,
