@@ -89,7 +89,6 @@ See below for information about "Sub Context." The `ux-lamp` directive relies of
    wish-context="comma separated,wish contexts"
    wish-data="scopeVariable"
    wish-event="click"
-   wish-action="scopeFunction(wish)"
    event-modifiers="ctrlKey,altKey,shiftKey,metaKey"
    wish-i-icon="glyphicon glyphicon-envelope"
    wish-img-icon="/home-logo.png">Home</a>
@@ -100,21 +99,15 @@ The attributes of interest:
  - `wish-id` - The id of the wish
  - `wish-context` - A comma separated list of contexts
  - `wish-data` - A scope object to be assigned to the wish's data object. This is doubly bound.
- - `wish-event` - The dom event to trigger on the element.
- - `wish-action` - A scope function to be executed after the event is triggered. More info about this below.
+ - `wish-event` - The dom event to trigger on the element. Defaults to 'click'.
  - `event-modifiers` - a comma separated list of modifiers to add to the event triggered on the element.
  - `wish-i-icon` - Used to set `data.uxGenie.iIcon` (see the `ux-lamp` directive for what this is used for).
  - `wish-img-icon` - Used to set `data.uxGenie.imgIcon` (see the `ux-lamp` directive for what this is used for).
 
 If for some reason you would rather not have the `genie-wish` attribute be the magic words, you can leave
-that attribute empty and the `genie-wish` directive will look for a name or id (in that order) and assign
-the magicWords to that value (split by commas). If none of these have values, you will get an error.
-
-##### Events and Actions
-
-If no wish-action or wish-event is present, a 'click' event will be triggered. If a wish-event is present then
-that event will be triggered on the element. If both a wish-event and wish-action are present, the wish-action
-will be called after the wish-event is triggered.
+that attribute empty and the `genie-wish` directive will look for a name, id, or the text of the element
+(in that order) and assign the magicWords to that value (split by commas). If none of these have values,
+you will get an error.
 
 ##### data.uxGenie
 

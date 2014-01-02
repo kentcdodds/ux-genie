@@ -1,3 +1,7 @@
+Latest
+
+ - `genie-wish` - removed the wish-action attribute so it no longer has an isolate scope.
+
 #0.2.4
 
  - `genie-wish` - made it so you can escape commas for magic words like so: "People\, places\, and things".

@@ -367,14 +367,11 @@
 
   uxGenie.directive('genieWish', ['genie', function(genie) {
     return {
-      scope: {
-        wishData: '=?',
-        wishAction: '&?'
-      },
+      scope: true,
       link: function(scope, el, attrs) {
         var id = attrs.wishId;
         var context = attrs.wishContext ? attrs.wishContext.split(',') : null;
-        var data = scope.wishData || {};
+        var data = attrs.wishData || {};
         var uxGenieData = data.uxGenie = data.uxGenie || {};
 
         uxGenieData.element = el[0];
@@ -397,10 +394,6 @@
             metaKey: modifiers.indexOf('metaKey') > -1
           });
           wish.data.uxGenie.element.dispatchEvent(event);
-
-          if (attrs.wishAction) {
-            scope.wishAction({wish: wish});
-          }
         };
 
         // get magic words
