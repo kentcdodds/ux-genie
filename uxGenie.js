@@ -167,6 +167,12 @@
           return function keydownHandler(event) {
             var change = 0;
             switch(event.keyCode) {
+              case 9:
+                event.preventDefault();
+                if (_isSubContextWish(scope.focusedWish)) {
+                  _setSubContextState(scope.focusedWish);
+                }
+                break;
               case 38:
                 change = -1;
                 break;
@@ -334,7 +340,7 @@
         }
 
         function _isSubContextWish(wish) {
-          return !!wish.data && !!wish.data.uxGenie && !!wish.data.uxGenie.subContext;
+          return !!wish && !!wish.data && !!wish.data.uxGenie && !!wish.data.uxGenie.subContext;
         }
 
         function _evaluateMath(expression) {

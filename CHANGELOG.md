@@ -1,6 +1,7 @@
 Latest
 
  - `genie-wish` - removed the wish-action attribute so it no longer has an isolate scope.
+ - `ux-lamp` - Added ability to press "tab" on sub context wishes.
 
 #0.2.4
 
