@@ -210,6 +210,10 @@
         // Making a wish
         scope.makeWish = function(wish) {
           var makeWish = true;
+          var magicWord = scope.genieInput;
+          if (scope.state === states.subContext) {
+            magicWord = magicWord.substring(startTextForSubContext.length);
+          }
           var makeInvisible = true;
           if (wish.id === mathResultId) {
             makeWish = false;
@@ -224,13 +228,13 @@
           }
 
           if (makeWish) {
-            wish = genie.makeWish(wish, scope.genieInput);
-            saveToLocalStorage(wish);
+            wish = genie.makeWish(wish, magicWord);
+            saveToLocalStorage();
           }
 
           scope.wishCallback({
             wish: wish,
-            magicWord: scope.genieInput
+            magicWord: magicWord
           });
           if (makeInvisible) {
             scope.$apply(function() {
