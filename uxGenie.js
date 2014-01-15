@@ -89,8 +89,10 @@
             if (typeof visibility !== 'boolean') {
               visibility = !scope.lampVisible;
             }
-            if (genie.enabled() && visibility) {
+            if (genie.enabled()) {
               scope.lampVisible = visibility;
+            } else {
+              scope.lampVisible = false;
             }
           });
         }
