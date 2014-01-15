@@ -73,9 +73,23 @@
 
         scope.lampVisible = false;
 
-        function toggleVisibility() {
-          scope.$apply(function() {
-            scope.lampVisible = !scope.lampVisible;
+        scope.safeApply = function(fn) {
+          var phase = this.$root.$$phase;
+          if(phase == '$apply' || phase == '$digest') {
+            if(fn && (typeof(fn) === 'function')) {
+              fn();
+            }
+          } else {
+            this.$apply(fn);
+          }
+        };
+
+        function toggleVisibility(visibility) {
+          scope.safeApply(function() {
+            if (typeof visibility !== 'boolean') {
+              visibility = !scope.lampVisible;
+            }
+            scope.lampVisible = visibility;
           });
         }
 
@@ -119,10 +133,7 @@
               return;
             }
           }
-
-          scope.$apply(function() {
-            scope.lampVisible = false;
-          });
+          toggleVisibility(false);
         });
 
         $document.bind(scope.rubEventType || 'keydown', function(event) {
@@ -142,9 +153,7 @@
         $document.bind('keydown', function(event) {
           if (event.keyCode === 27 && scope.lampVisible) {
             event.preventDefault();
-            scope.$apply(function() {
-              scope.lampVisible = false;
-            });
+            toggleVisibility(false);
           }
         });
 
@@ -162,11 +171,11 @@
               } else if (newIndex >= scope.matchingWishes.length) {
                 newIndex = newIndex - scope.matchingWishes.length;
               }
-              scope.$apply(function() {
+              scope.safeApply(function() {
                 scope.focusOnWish(scope.matchingWishes[newIndex], true);
               });
             }
-          }
+          };
           return function keydownHandler(event) {
             var change = 0;
             switch(event.keyCode) {
@@ -199,7 +208,7 @@
             }
             preSubContextContext = genie.context();
             genie.context(wish.data.uxGenie.subContext);
-            scope.$apply(function() {
+            scope.safeApply(function() {
               scope.genieInput = startTextForSubContext;
             });
           }
@@ -219,7 +228,6 @@
           if (scope.state === states.subContext) {
             magicWord = magicWord.substring(startTextForSubContext.length);
           }
-          var makeInvisible = true;
           if (wish.id === mathResultId) {
             makeWish = false;
           }
@@ -229,19 +237,15 @@
             saveToLocalStorage();
           }
 
-          if (_isSubContextWish(wish)) {
-            _setSubContextState(wish);
-            makeInvisible = false;
-          }
-
           scope.wishCallback({
             wish: wish,
             magicWord: magicWord
           });
-          if (makeInvisible) {
-            scope.$apply(function() {
-              scope.lampVisible = false;
-            });
+          
+          if (_isSubContextWish(wish)) {
+            _setSubContextState(wish);
+          } else {
+            toggleVisibility(false);
           }
         };
 
