@@ -1,9 +1,12 @@
 Latest
 
- - `genie-wish` - removed the wish-action attribute so it no longer has an isolate scope.
- - `ux-lamp` - Added ability to press "tab" on sub context wishes.
- - `ux-lamp` - Altered the template a bit to give more CSS control.
- - `ux-lamp` - Improved scope.$apply stuff to be safe. Fixed subcontext wish execution.
+ - `genie-wish`
+   - removed the wish-action attribute so it no longer has an isolate scope.
+ - `ux-lamp`
+   - Added ability to press "tab" on sub context wishes.
+   - Altered the template a bit to give more CSS control.
+   - Improved scope.$apply stuff to be safe. Fixed subcontext wish execution.
+   - Not allowing genie to be visible when genie is disabled.
 
 #0.2.4
 
