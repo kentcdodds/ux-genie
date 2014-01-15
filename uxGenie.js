@@ -21,7 +21,7 @@
     var states = {
       userEntry: 'userentry',
       subContext: 'subcontext'
-    }
+    };
     return {
       replace: true,
       template: function(el, attr) {
@@ -32,14 +32,16 @@
         return ['<div class="genie-container"' + ngShow + '>',
           '<input type="text" ng-model="genieInput" class="lamp-input input form-control" />',
           '<div ng-show="matchingWishes.length > 0" class="genie-wishes">',
-          '<div class="genie-wish wish-{{wish.id}}" ' +
-            'ng-repeat="wish in matchingWishes" ' +
-            'ng-class="{focused: focusedWish == wish}" ' +
-            'ng-click="makeWish(wish)" ' +
+          '<div class="genie-wish wish-{{wish.id}}" ',
+            'ng-repeat="wish in matchingWishes" ',
+            'ng-class="{focused: focusedWish == wish}" ',
+            'ng-click="makeWish(wish)" ',
             'ng-mouseenter="focusOnWish(wish, false)">',
-          '<img ng-if="wish.data.uxGenie.imgIcon" ng-src="{{wish.data.uxGenie.imgIcon}}">',
-          '<i ng-if="wish.data.uxGenie.iIcon" class="{{wish.data.uxGenie.iIcon}}"></i>',
-          '{{wish.data.uxGenie.displayText || wish.magicWords[0]}}',
+            '<span class="wish-icon" ng-class="{\'has-img\': wish.data.uxGenie.imgIcon, \'has-i\': wish.data.uxGenie.iIcon}">',
+              '<img ng-if="wish.data.uxGenie.imgIcon" class="wish-img-icon" ng-src="{{wish.data.uxGenie.imgIcon}}">',
+              '<i ng-if="wish.data.uxGenie.iIcon" class="wish-i-icon {{wish.data.uxGenie.iIcon}}"></i>',
+            '</span>',
+            '<span class="wish-display-text">{{wish.data.uxGenie.displayText || wish.magicWords[0]}}</span>',
           '</div></div></div>'].join('');
       },
       scope: {
@@ -221,18 +223,15 @@
           if (wish.id === mathResultId) {
             makeWish = false;
           }
+          
+          if (makeWish) {
+            wish = genie.makeWish(wish, magicWord);
+            saveToLocalStorage();
+          }
 
           if (_isSubContextWish(wish)) {
             _setSubContextState(wish);
             makeInvisible = false;
-            if (!wish.action) {
-              makeWish = false;
-            }
-          }
-
-          if (makeWish) {
-            wish = genie.makeWish(wish, magicWord);
-            saveToLocalStorage();
           }
 
           scope.wishCallback({

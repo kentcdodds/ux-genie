@@ -148,19 +148,23 @@ wants to contribute a better method without adding a ton of weight to this direc
 If all you do is follow the instructions above you'll be disappointed to see that the lamp looks nothing like the demo. This is because I've opened it up to you to do custom CSS. You can borrow from the css I've made in the demo, or you can be creative and use the classes available to you:
 
 ```css
-.genie-container {/* */}
+div.genie-container {/* */}
 
-.genie-container > input {/* */}
+input.lamp-input {/* */}
 
-.genie-wishes {/* */}
+div.genie-wishes {/* */}
 
-.genie-wish {/* */}
+div.genie-wish {/* */}
 
-.genie-wish > img {/* */}
+div.genie-wish.focused {/* */}
 
-.genie-wish > i {/* */}
+span.wish-icon {/* */}
 
-.genie-wish.focused {/* */}
+img.wish-img-icon {/* */}
+
+i.wish-i-icon {/* */}
+
+span.wish-display-text {/* */}
 ```
 
 ## Contributing
