@@ -1,5 +1,7 @@
 Latest
 
+#0.3.0
+
  - `genie-wish`
    - removed the wish-action attribute so it no longer has an isolate scope.
  - `ux-lamp`
@@ -7,6 +9,7 @@ Latest
    - Altered the template a bit to give more CSS control.
    - Improved scope.$apply stuff to be safe. Fixed subcontext wish execution.
    - Not allowing genie to be visible when genie is disabled.
+   - Adding custom template option. Also changing the default template slightly which is the reason for the major version bump.
 
 #0.2.4
 

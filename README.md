@@ -28,9 +28,9 @@ The directive is called `uxLamp` in a module called `uxGenie`. It is restricted 
 angular.module('yourApp', ['uxGenie']);
 ```
 
-### Directives
+## Directives
 
-#### ux-lamp
+### ux-lamp
 
 **Short Version**
 
@@ -38,7 +38,7 @@ angular.module('yourApp', ['uxGenie']);
 <div ux-lamp></div>
 ```
 
-This will provide you will the default lamp functionality. The lamp is rubbed with <kbd>Ctrl</kbd> + <kbd>Space</kbd> and it will simply appear/disappear.
+This will provide you will the default lamp functionality and template. The lamp is rubbed with <kbd>Ctrl</kbd> + <kbd>Space</kbd> and it will simply appear/disappear.
 
 **Long Version**
 
@@ -66,7 +66,7 @@ The attributes of interest:
  - `wish-callback` - A function to call when a wish is made (i.e. the user clicks or presses <kbd>enter</kbd> on a wish). The wish which was made is passed to this as an argument.
  - `local-storage` - Defaults to false, but if it is set to true (or a truthy variable) then the user's preferences will be saved to their local storage and reloaded whenever they refresh the browser.
 
-##### data.uxGenie
+#### data.uxGenie
 
 The text displayed for each wish is either what is contained in the `displayText` property of the wish's `data.uxGenie` property.
 If this is null, then it uses the first item in the `magicWords` array of the wish.
@@ -77,7 +77,82 @@ An `i` tag will be created and added prior to each wish which has a `data.uxGeni
 
 See below for information about "Sub Context." The `ux-lamp` directive relies of the `data.uxGenie.subContext` property for this.
 
-#### genie-wish
+#### Custom Templates
+
+If the `ux-genie` attribute has a value, then the default template will be overwritten and the children elements you include will be [transcluded](http://docs.angularjs.org/guide/directive#creating-custom-directives_demo_creating-a-directive-that-wraps-other-elements). This allows you to have more control over the template used when genie returns the matched wishes. Here are a few things you'll need to know:
+
+##### `uxLamp` object
+
+As an api to the `ux-lamp` simply assign a variable from your scope to the `ux-lamp` attribute like so: `<div ux-lamp="lamp"><your_template></div>`. The object you give will have the following properties attached to it which you can use in your template:
+
+ - `input`: The model attached to the `lamp-input` field
+ - `state`: The current state of the lamp (currently only "userentry" or "subcontext" are possible).
+ - `focusedWish`: The wish which currently has focus. This is the one which will be called if the "enter" key is pressed in the `lamp-input` field.
+ - `matchingWishes`: An array of all the wishes which match the current `input`
+
+##### `lamp-input` and `lamp-wishes-container`
+
+You must add the class `lamp-input` to the input field in your template which `ux-lamp` will treat as the default input field.
+
+You must add the class `lamp-wishes-container` to the div that will contain the `ng-repeat` for the wishes in your template. The `ng-repeat` div must be an immediate child of the `lamp-wishes-container`.
+
+These requirements are so `ux-lamp` to know how to interact with your template (auto-focus the `lamp-input` and auto-scroll the `lamp-wishes-container`), it needs to know which elements are which.
+
+##### Example
+
+See [the demo](http://kent.doddsfamily.us/genie) for an example of a custom template.
+
+#### Sub Context
+
+Alfred has a feature called "Quick Search" allowing a user to switch context while they're typing. The `ux-lamp`
+directive has this ability. By providing a wish with the property `data.uxGenie.subContext` the lamp will temporarily
+change context to the value of that property when a wish is made and prevent the lamp from disappearing or when
+the user types exactly what the display text for that wish is (or the first magicWord is). One use case for this
+is if you want a user to search through a collection of similar items, for example animals, you could have a wish
+with the sub context of "search-animals" and register a bunch of wishes with "search-animals" as the context.
+When the user selected the "Search Animals" wish, they would then be able to type animal names and those wishes would
+at that point be in context and show up.
+
+**Note:** The way this works is the context is completely replaced with whatever is provided as the `subContext` property
+which is desireable. It is reverted when 1. The lamp disappears or 2. The user input no longer starts with the sub context's
+wish display text.
+
+#### View All Wishes
+If the first character typed in the lamp input field is <kbd>'</kbd> (apostrophe), then it is stripped from the input when genie is queried for matching magic words. This is primarily to enable a user to see all the available wishes.
+
+#### Calculator
+
+You can type simple math expressions into genie and they will be evaluated. This does use `eval`, but it goes through a
+little scrubbing so it should be safe. It's very simple, but you should be able to use any `Math` functions (that's
+sort of how it works) for example, instead of `2^3` you would type `pow(2,3)`. I know that's not optimal. If someone
+wants to contribute a better method without adding a ton of weight to this directive that would be cool :)
+
+#### CSS
+
+If you're not using a custom template and simply using the default template instead, then here are the css classes you have available to you:
+
+```css
+div.genie-lamp-container {/* */}
+
+input.lamp-input {/* */}
+
+div.lamp-wishes-container {/* */}
+
+div.lamp-wish {/* */}
+
+div.lamp-wish.focused {/* */}
+
+span.wish-icon {/* contains both icon elements */}
+
+img.wish-img-icon {/* */}
+
+i.wish-i-icon {/* */}
+
+span.wish-display-text {/* */}
+```
+
+
+### genie-wish
 
 **Short Version**
 <a href="/home" genie-wish="Go Home">Home</a>
@@ -109,63 +184,13 @@ that attribute empty and the `genie-wish` directive will look for a name, id, or
 (in that order) and assign the magicWords to that value (split by commas). If none of these have values,
 you will get an error.
 
-##### data.uxGenie
+#### data.uxGenie
 
 This directive uses the following wish `data.uxGenie` items:
 
  - `element` - This is assigned by the directive. It is the element to perform the action on.
  - `event` - This is assigned by the given `wish-event` or the given `wish-data`'s `data.uxGenie.event` property.
      If neither of those are present, it defaults to 'click'.
-
-## Other Stuff
-
-### Sub Context
-
-Alfred has a feature called "Quick Search" allowing a user to switch context while they're typing. The `ux-lamp`
-directive has this ability. By providing a wish with the property `data.uxGenie.subContext` the lamp will temporarily
-change context to the value of that property when a wish is made and prevent the lamp from disappearing or when
-the user types exactly what the display text for that wish is (or the first magicWord is). One use case for this
-is if you want a user to search through a collection of similar items, for example animals, you could have a wish
-with the sub context of "search-animals" and register a bunch of wishes with "search-animals" as the context.
-When the user selected the "Search Animals" wish, they would then be able to type animal names and those wishes would
-at that point be in context and show up.
-
-**Note:** The way this works is the context is completely replaced with whatever is provided as the `subContext` property
-which is desireable. It is reverted when 1. The lamp disappears or 2. The user input no longer starts with the sub context's
-wish display text.
-
-### View All Wishes
-If the first character typed in the lamp input field is <kbd>'</kbd> (apostrophe), then it is stripped from the input when genie is queried for matching magic words. This is primarily to enable a user to see all the available wishes.
-
-### Calculator
-
-You can type simple math expressions into genie and they will be evaluated. This does use `eval`, but it goes through a
-little scrubbing so it should be safe. It's very simple, but you should be able to use any `Math` functions (that's
-sort of how it works) for example, instead of `2^3` you would type `pow(2,3)`. I know that's not optimal. If someone
-wants to contribute a better method without adding a ton of weight to this directive that would be cool :)
-
-### CSS
-If all you do is follow the instructions above you'll be disappointed to see that the lamp looks nothing like the demo. This is because I've opened it up to you to do custom CSS. You can borrow from the css I've made in the demo, or you can be creative and use the classes available to you:
-
-```css
-div.genie-container {/* */}
-
-input.lamp-input {/* */}
-
-div.genie-wishes {/* */}
-
-div.genie-wish {/* */}
-
-div.genie-wish.focused {/* */}
-
-span.wish-icon {/* */}
-
-img.wish-img-icon {/* */}
-
-i.wish-i-icon {/* */}
-
-span.wish-display-text {/* */}
-```
 
 ## Contributing
 
@@ -212,5 +237,3 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kentcdodds/ux-genie/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
-[![Analytics](https://ga-beacon.appspot.com/UA-42764912-2/ux-genie/readme)](https://github.com/igrigorik/ga-beacon)
