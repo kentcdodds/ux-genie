@@ -1,4 +1,7 @@
-Latest
+# Latest
+
+ - `ux-lamp` - Changing storage options. The `local-storage` attribute's value is now used as the key for the local storage value.
+ - `ux-lamp` - New attribute `firebase` now allows you to store your data in a firebase. See README for more info.
 
 #0.3.0
 
