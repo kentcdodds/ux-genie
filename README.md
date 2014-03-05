@@ -156,9 +156,12 @@ span.wish-display-text {/* */}
 ### genie-wish
 
 **Short Version**
+```html
 <a href="/home" genie-wish="Go Home">Home</a>
+```
 
 **Long Version**
+```html
 <a href="/home"
    genie-wish="Go Home"
    wish-id="go-home-wish-id"
@@ -168,6 +171,7 @@ span.wish-display-text {/* */}
    event-modifiers="ctrlKey,altKey,shiftKey,metaKey"
    wish-i-icon="glyphicon glyphicon-envelope"
    wish-img-icon="/home-logo.png">Home</a>
+```
 
 The attributes of interest:
 
