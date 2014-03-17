@@ -209,20 +209,16 @@
          * Document events
          */
         $document.bind('click', function(event) {
+          if (!scope.lampVisible) return;
           // If it's not part of the lamp, then make the lamp invisible.
-          var clickedElement = event.srcElement || event.target;
-          if (clickedElement === el[0]) {
-            return;
-          }
-          var children = el.children();
-          for (var i = 0; i < children.length; i++) {
-            if (clickedElement === children[i]) {
+          var parent = event.srcElement || event.target;
+          while (parent) {
+            if (parent === el[0]) {
               return;
             }
+            parent = parent.parentNode;
           }
-          if (scope.lampVisible) {
-            toggleVisibility(false);
-          }
+          toggleVisibility(false);
         });
 
         $document.bind(scope.rubEventType || 'keydown', function(event) {
@@ -424,14 +420,16 @@
         scope.$watch('lampVisible', function(lampIsVisible) {
           if (lampIsVisible) {
             handleInputChange(scope.uxLamp.input);
-            if (scope.rubClass) {
-              el.addClass(scope.rubClass);
-              // Needs to be lampVisible before it can be selected
-              $timeout(function() {
+            if ($document[0].activeElement !== inputEl[0]) {
+              if (scope.rubClass) {
+                el.addClass(scope.rubClass);
+                // Needs to be visible before it can be selected
+                $timeout(function() {
+                  inputEl[0].select();
+                });
+              } else {
                 inputEl[0].select();
-              }, 25);
-            } else {
-              inputEl[0].select();
+              }
             }
           } else {
             if (scope.rubClass) {
