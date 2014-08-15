@@ -1,3 +1,7 @@
+# 0.3.3
+
+ - Forgot to uglify to uxGenie.min.js - Should really probably just make a build for this...
+
 # 0.3.2
 
  - `ux-genie` - Adding commonjs style module support
