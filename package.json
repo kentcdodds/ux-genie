@@ -1,0 +1,28 @@
+{
+  "name": "ux-genie",
+  "version": "0.3.2",
+  "description": "AngularJS module for GenieJS",
+  "main": "uxGenie.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://kentcdodds@github.com/kentcdodds/ux-genie.git"
+  },
+  "keywords": [
+    "anguarljs",
+    "geniejs",
+    "genie",
+    "keyboard"
+  ],
+  "author": "Kent C. Dodds <kent@doddsfamily.us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentcdodds/ux-genie/issues"
+  },
+  "homepage": "https://github.com/kentcdodds/ux-genie"
+}

@@ -1,5 +1,7 @@
-# Latest
+# 0.3.2
 
+ - `ux-genie` - Adding commonjs style module support
+ - `ux-lamp` - No longer calculating math when in subcontext
  - `ux-lamp` - Improved document click handler to determine whether to toggle visibility
  - `ux-lamp` - Improved lampVisible watcher to only focus on the input if necessary.
 
