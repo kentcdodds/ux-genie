@@ -402,18 +402,20 @@
             _setSubContextState(firstWish);
           }
 
-          var result = _evaluateMath(newVal || '');
-          if (angular.isNumber(result)) {
-            scope.uxLamp.matchingWishes = scope.uxLamp.matchingWishes || [];
-            scope.uxLamp.matchingWishes.unshift({
-              id: mathResultId,
-              data: {
-                uxGenie: {
-                  displayText: newVal + ' = ' + result
+          if (scope.uxLamp.state !== states.subContext) {
+            var result = _evaluateMath(newVal || '');
+            if (angular.isNumber(result)) {
+              scope.uxLamp.matchingWishes = scope.uxLamp.matchingWishes || [];
+              scope.uxLamp.matchingWishes.unshift({
+                id: mathResultId,
+                data: {
+                  uxGenie: {
+                    displayText: newVal + ' = ' + result
+                  }
                 }
-              }
-            });
-            scope.uxLamp.focusedWish = scope.uxLamp.matchingWishes[0];
+              });
+              scope.uxLamp.focusedWish = scope.uxLamp.matchingWishes[0];
+            }
           }
         }
 
