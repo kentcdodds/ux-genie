@@ -1,3 +1,7 @@
+# Latest
+
+ - Deprecated `ux-genie` as a standalone repo/component. It now comes with [genie](http://github.com/kentcdodds/genie).
+
 # 0.3.3
 
  - Forgot to uglify to uxGenie.min.js - Should really probably just make a build for this...
